@@ -19,6 +19,7 @@ preprocess: v2.Compose = v2.Compose([
              ])
 
 def load_model():
+  # Download model weights from Hugging Face if they don't exist
   if not os.path.exists(MODEL_WEIGHTS_PATH):
     hf_hub_download(
       repo_id="SoccerFalcon/GoalPredictor",
