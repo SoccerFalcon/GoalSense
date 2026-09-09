@@ -1,0 +1,6 @@
+huggingface_hub
+mss
+PyQt6
+safetensors
+torch
+torchvision
