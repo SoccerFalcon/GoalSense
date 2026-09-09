@@ -39,11 +39,11 @@ class PredictionScreen(QMainWindow):
 
     layout = QVBoxLayout(centralWidget)
 
-    self.probability_label = QLabel("-")
-    self.probability_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-    self.description_label = QLabel("GOAL PROBABILITY")
+    self.description_label = QLabel("Current Threat Level:")
     self.description_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+    self.probability_label = QLabel("Low")
+    self.probability_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
     self.probability_graph_scene = QGraphicsScene()
     self.probability_graph_view = QGraphicsView(self.probability_graph_scene)
@@ -85,7 +85,14 @@ class PredictionScreen(QMainWindow):
     self.update_graph()
 
   def new_probability(self, probability):
-    self.probability_label.setText(f"{probability: 0.1%} chance of a goal")
+    self.probability_label.setText(
+      f"""{
+        "<b><u>VERY HIGH</u></b>" if probability > 0.90 else
+        "<b><u>High</u></b>" if probability > 0.80 else
+        "<b>Moderate</b>" if probability > 0.50 else
+        "Low"
+      }"""
+    )
     self.probabilities.append(probability)
     self.update_graph()
 
