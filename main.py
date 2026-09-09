@@ -12,7 +12,7 @@ APP_ICON_PATH = PROJECT_ROOT / "Assets" / "Icon.png"
 def main():
   app = QApplication(sys.argv)
   app.setWindowIcon(QIcon(str(APP_ICON_PATH)))
-  app.setApplicationName("Soccer Goal Prediction")
+  app.setApplicationName("GoalSense")
   controller = AppController()
 
   sys.exit(app.exec())

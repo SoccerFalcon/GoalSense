@@ -44,7 +44,7 @@ class LandingScreen(QWidget):
         )
         layout.setSpacing(self.LAYOUT_SPACING)
 
-        self.title_label = QLabel("Soccer Goal Probability Predictor", self)
+        self.title_label = QLabel("GoalSense: Real-Time Threat Prediction for Soccer", self)
         self.title_label.setStyleSheet(
             "font-size: 24px; font-weight: bold; color: white;"
             "font-family: Segoe UI, sans-serif;"
