@@ -129,6 +129,7 @@ Make sure to keep the broadcast unobstructed on the screen, and redefine the reg
 ## Known Limitations
  
 - **Broadcast footage only** — Trained exclusively on professional broadcast camera angles. Performance will degrade on phone recordings, wide-angle cameras, or non-standard perspectives.
+- **Multiple Monitors** — If using on a setup with multiple monitors, the broadcast must be located on the primary monitor
 - **Cutaways and replays** — Model predictions are not accurate on cutaways or replays, only on actual match footage.
 - **Lighting and compression** — Heavily compressed streams or unusual stadium lighting may reduce prediction quality.
 - **Not a betting tool** — This is a personal research project. Predictions are probabilistic and will frequently be wrong.
