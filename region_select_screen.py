@@ -1,5 +1,5 @@
 from PyQt6.QtCore import pyqtSignal, QRect, Qt
-from PyQt6.QtGui import QColor, QPainter, QPen
+from PyQt6.QtGui import QColor, QPainter, QPen, QScreen
 from PyQt6.QtWidgets import QApplication, QPushButton, QWidget
 
 class RegionSelectScreen(QWidget):
@@ -27,6 +27,8 @@ class RegionSelectScreen(QWidget):
   # underneath this window
   def showEvent(self, event):
     self.underneath = QApplication.primaryScreen().grabWindow(0)
+    self.screen: QScreen = QApplication.primaryScreen()
+    self.dpr: float = self.screen.devicePixelRatio()
 
   # When the user presses down the mouse, start drawing the rectangle
   def mousePressEvent(self, event):
@@ -35,8 +37,8 @@ class RegionSelectScreen(QWidget):
     
     self.is_drawing = True
 
-    self.start_x = event.position().toPoint().x()
-    self.start_y = event.position().toPoint().y()
+    self.start_x = event.globalPosition().toPoint().x()
+    self.start_y = event.globalPosition().toPoint().y()
     self.end_x = self.start_x
     self.end_y = self.start_y
 
@@ -48,8 +50,8 @@ class RegionSelectScreen(QWidget):
     if not self.is_drawing:
       return
     
-    self.end_x = event.position().toPoint().x()
-    self.end_y = event.position().toPoint().y()
+    self.end_x = event.globalPosition().toPoint().x()
+    self.end_y = event.globalPosition().toPoint().y()
     self.update()
 
   # When the user releases the mouse, stop updating the rectangle
@@ -66,10 +68,10 @@ class RegionSelectScreen(QWidget):
   def on_confirm(self):
     self.hide()
     self.region_selected.emit(
-      min(self.start_x, self.end_x),
-      min(self.start_y, self.end_y),
-      abs(self.end_x - self.start_x),
-      abs(self.end_y - self.start_y)
+      int(min(self.start_x, self.end_x) * self.dpr),
+      int(min(self.start_y, self.end_y) * self.dpr),
+      int(abs(self.end_x - self.start_x) * self.dpr),
+      int(abs(self.end_y - self.start_y) * self.dpr)
     )
 
   def paintEvent(self, event): 
