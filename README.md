@@ -1,8 +1,7 @@
 # GoalSense
  
 > Real-time threat level overlay for soccer broadcasts, powered by a fine-tuned R3D-18 video neural network.
- 
----
+
 ## Table of Contents
 * [Jump to Overview](#overview)
 * [Jump to Technical Details](#technical-details)
@@ -20,8 +19,7 @@ The app sits as an overlay on your screen while you watch a soccer match and con
 how threatening the current moment of play is. A high score means the model has identified patterns associated with imminent goals: attacking positioning, ball movement toward goal, defensive disorganisation. A low score means routine play
  
 The model is trained to answer: *given a clip of the last 3 seconds of broadcast footage, does a goal occur within 8 seconds from the start of the clip?* The resulting score is used as a danger indicator rather than a literal probability.
- 
----
+
 
 ## Technical Details
  
@@ -51,7 +49,6 @@ The model is trained to answer: *given a clip of the last 3 seconds of broadcast
 Built with **PyQt6** for the overlay UI and **mss** for fast screen capture. The app runs a background `QThread` that continuously captures frames from a user-defined screen region, maintains a rolling 3-second frame buffer, samples 16 frames, and runs inference.
 Results are emitted as Qt signals.
  
----
  
 ## Requirements
  
@@ -59,7 +56,6 @@ Results are emitted as Qt signals.
 - Python 3.10+
 - NVIDIA GPU strongly recommended
 - CUDA 12.6 (if using GPU)
----
  
 ## Installation
  
@@ -101,7 +97,6 @@ pip install -r requirements.txt
  
 Model weights are hosted on HuggingFace and will be downloaded automatically on first run.
  
----
  
 ## Usage
  
@@ -131,9 +126,8 @@ Make sure to keep the broadcast unobstructed on the screen, and redefine the reg
 - **Cutaways and replays** — Model predictions are not accurate on cutaways or replays, only on actual match footage.
 - **Lighting and compression** — Heavily compressed streams or unusual stadium lighting may reduce prediction quality.
 - **Not a betting tool** — This is a personal research project. Predictions are probabilistic and will frequently be wrong.
----
  
-## Current Status & Roadmap
+## Current Status and Roadmap
  
 GoalSense is an actively developed project. The current model works end-to-end but tends to overpredict goals. It catches most genuine danger moments but also fires on some non-threatening play. The data pipeline and application are complete; the focus now is on improving model quality.
  
@@ -142,7 +136,6 @@ Planned improvements:
 - Expanding beyond 50 matches to improve generalisation
 - Tuning hyperparameters to achieve better performace
 - Calibrating the decision boundary to reduce false positives
----
  
 ## Acknowledgements
 
