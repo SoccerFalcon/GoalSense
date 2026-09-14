@@ -2,8 +2,6 @@
  
 > Real-time threat level overlay for soccer broadcasts, powered by a fine-tuned R3D-18 video neural network.
  
-[Demo gif placeholder]
- 
 ---
 ## Table of Contents
 * [Jump to Overview](#overview)
